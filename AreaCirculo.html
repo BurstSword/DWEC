@@ -1,0 +1,31 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <canvas id="myCanvas" width="700" height="350" style="border:1px solid #d3d3d3;"></canvas>
+    <script>
+        var pi = Math.PI;
+        var radio;
+
+        radio = prompt("Introduzca el radio del area a calcular");
+        document.write("El area del circulo es: " + (pi * Math.pow(radio, 2)).toFixed(2));
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.arc(350, 175, radio, 0, 2 * Math.PI);
+        ctx.stroke();
+
+    </script>
+
+
+
+
+</body>
+
+
+
+</html>
