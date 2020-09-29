@@ -1,0 +1,49 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <form id="formulario">
+        Nombre: <input type="text" onkeypress="return validaPalabras(event)" id="nombre" /><br><br>
+        Teléfono: <input type="text" maxlength="9" onkeypress="return validaNumeros(event)" id="telefono" />
+        <br><br> 
+    </form>
+    <button onclick="validar()">Validar</button>
+    <p id="validacion"></p>
+    <script>
+        function validaNumeros(event) {
+            if (isNaN(event)) {
+                return true;
+            }
+            return false;
+        }
+        function validaPalabras(event) {
+            if (event.charCode < 48 || event.charCode > 57) {
+                return true;
+            }
+            return false;
+        }
+        function validar() {
+           
+            var validacion = document.getElementById("validacion").innerHTML;
+            var telefono = document.getElementById("telefono").value;
+            var nombre = document.getElementById("nombre").value;
+            if (telefono.length!=9   | (nombre.length==0 || nombre ==" ")) {
+                console.log("Prueba incorrecta");
+                var respuesta = "Datos incorrectos";
+                console.log(respuesta);
+            } else {
+                console.log("Prueba correcta");
+                var respuesta = "Datos correctos";
+                console.log(respuesta);
+            }
+
+            document.getElementById("validacion").innerHTML = respuesta;
+            
+        }
+    </script>
+</body>
+
+</html>
