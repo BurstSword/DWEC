@@ -13,8 +13,9 @@
     <button onclick="validar()">Validar</button>
     <p id="validacion"></p>
     <script>
+        var nombre = document.getElementById("nombre").value;
         function validaNumeros(event) {
-            if (isNaN(event)) {
+            if (event.charCode <= 48 || event.charCode <= 57) {
                 return true;
             }
             return false;
@@ -22,6 +23,7 @@
         function validaPalabras(event) {
             if (event.charCode < 48 || event.charCode > 57) {
                 return true;
+                
             }
             return false;
         }
