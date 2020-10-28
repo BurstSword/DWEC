@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        var dt = new Date();
+    dt.setHours( 9);
+    dt.setMinutes(0);
+    dt.setSeconds(0);
+        for (let index = 0; index < 24; index++) {
+            document.write(dt.getHours() + ":" + (dt.getMinutes() + ":"+ dt.getSeconds() +"0 ");
+            document.write("\n");
+            dt.setMinutes( dt.getMinutes() + 30 );
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
