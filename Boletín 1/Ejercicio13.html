@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        let palabraAComprobar = prompt("Introduce una palabra o frase y te diré si es palíndromo o no");
+        let palabraAMostrar = palabraAComprobar;
+        palabraAComprobar = palabraAComprobar.toLowerCase();
+        
+        palabraAComprobar = palabraAComprobar.replace(/ /g, "");
+        let palabraAlReves = palabraAComprobar.split("").reverse().join("").replace(/ /g, "");
+     
+
+        if (palabraAComprobar == palabraAlReves) {
+            document.write(palabraAMostrar + " es un palíndromo");
+        } else {
+            document.write(palabraAMostrar + " no es un palíndromo");
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

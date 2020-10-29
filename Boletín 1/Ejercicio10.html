@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+
+        let nombrePresidente="";
+        let apellido="";
+        while (nombrePresidente != "Adolfo Suarez") {
+            nombrePresidente = prompt("Introduce el nombre del primer presidente de la democracia de España");
+             if (nombrePresidente == "Adolfo") {
+                 while(apellido!="Suarez"){
+                    apellido = prompt("Te falta el apellido");
+                 }
+                 nombrePresidente= nombrePresidente+" "+apellido;
+            } else if (nombrePresidente == "Suarez") {
+                apellido=nombrePresidente;
+                nombrePresidente="";
+                while(nombrePresidente!="Adolfo"){
+                    nombrePresidente = prompt("Te falta el nombre");
+                }
+                nombrePresidente = nombrePresidente + " " + apellido; 
+            } 
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Correcto!</h1>
+</body>
+
+</html>

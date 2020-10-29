@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+            var dt = new Date();
+    dt.setHours(9);
+    dt.setMinutes(0);
+    dt.setSeconds(0);
+        for (let index = 0; index<145; index++) {
+            document.write(dt.getHours() + ":" + ('0' + dt.getMinutes()).slice(-2) + ":"+ ('0' + dt.getSeconds()).slice(-2)+"<br>");
+            document.write("\n");
+            dt.setMinutes( dt.getMinutes() + 5 );
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
