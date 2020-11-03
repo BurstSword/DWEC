@@ -5,15 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         let cadena = prompt("Introduce una frase y se te mostrán los caractéres uno a uno ignorando los número");
-        for (let index = 0; index < cadena.length; index++) {
+        cadena = cadena.replace(/[0-9]/g, '');
+        cadena= cadena.split("");
+        cadena.forEach((e)=>document.write(e))
+        
+
+        /* for (let index = 0; index < cadena.length; index++) {
             if(isNaN(cadena[index])){
                 document.write(cadena[index]+" ")
             }
             
-        }
-            
-        
-
+        } */
     </script>
 </head>
 <body>
