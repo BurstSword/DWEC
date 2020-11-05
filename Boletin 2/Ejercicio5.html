@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+
+    <script>
+        let boton = prompt("1. Potencia \n 2. Raíz \n 3. Redondeo \n 4. Trigonometría");
+        
+        switch (parseInt(boton)) {
+            case 1:
+                let base = prompt("Introduce la base");
+                let exponente = prompt("Introduce el exponente");
+                document.write("La potencia de  "+ base + "  elevado a " + exponente + " es "+ Math.pow(base,exponente));
+                break;
+            case 2:
+                let numeroRaiz = prompt("Introduce un numero entero positivo para calcular su raiz");
+                document.write("La raiz de " + numeroRaiz + " es " + Math.sqrt(numeroRaiz));
+                break;
+            case 3:
+                let numeroDecimal = prompt("Introduce un numero decimal y te lo redondearé a la alta y a la baja");
+                document.write("A la alta es " + Math.ceil(numeroDecimal) + "<br>");
+                document.write("A la baja es " + Math.floor(numeroDecimal));
+                break;
+            case 4:
+                let angulo = prompt("Introduce un angulo entre 0 y 360");
+                document.write("El seno de " + angulo + " es " +Math.sin(angulo) + "<br>");
+                document.write("El coseno de " + angulo + " es " +Math.cos(angulo) + "<br>");
+                document.write("La tangente de " + angulo + " es " +Math.tan(angulo));
+                break;
+
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

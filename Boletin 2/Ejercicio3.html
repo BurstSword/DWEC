@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <script>
+
+
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        let dia = prompt("Introduce un día");
+        let mes = prompt("Introduce un mes");
+        let anyos = prompt("introduce el año");
+
+        let fecha = new Date(anyos, mes - 1, dia);
+        
+
+        document.write(fecha.toLocaleDateString("es-ES")+"<br>"); 
+        document.write(fecha.toLocaleDateString("es-ES", options) +"<br>"); 
+        document.write(fecha.toLocaleDateString("en-US", options)); 
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

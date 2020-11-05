@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+    <script>
+        let fechaHoy = new Date();
+        let eleccion = prompt("Que tipo de hora quieres? si quieres detallada escribe 'detallada' y si no escribe no detallada ");
+        let options = {
+            hour: "2-digit", minute: "2-digit", hour12:true
+        };
+
+        if(eleccion=="detallada"){
+            document.write(fechaHoy.toLocaleTimeString());
+        }else{
+            document.write(fechaHoy.toLocaleTimeString("es-ES", options));
+        }
+
+        
+       
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
