@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio práctico</title>
+    <script>
+        let correcto = false;
+        while (correcto == false) {
+            let nombreyApellido = prompt("Introduce mi nombre y mi apellido")
+            nombreyApellido = nombreyApellido.trim().toLowerCase();
+
+
+            if (nombreyApellido == "miguel espigares") {
+                correcto = true;
+
+            } else if (nombreyApellido == "espigares") {
+                alert("Has introducido mal el nombre");
+
+            } else if (nombreyApellido == "miguel") {
+                alert("Has introducido mal el apellido")
+
+            } else {
+                alert("ERROR. Inténtelo de nuevo")
+            }
+        }
+
+        let fechaHoy = new Date();
+        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.write("<h1 style='text-align:right'>" + fechaHoy.toLocaleDateString("es-ES", options) + "<h1>");
+
+
+        let cadenaCaracteres = prompt("Introduce una cadena y se te mostrará del revés y sin números");
+
+        cadenaCaracteres = cadenaCaracteres.replace(/[0-9]/g, '');
+        cadenaCaracteres = cadenaCaracteres.split("").reverse();
+        cadenaCaracteres.forEach((e) => document.write(e));
+
+
+        let numeroP;
+        while (isNaN(parseInt(numeroP))) {
+            numeroP = prompt("Introduce un numero para calcular la pendiente");
+        }
+
+        document.write("<table style='margin-left:auto; margin-right:auto;text-align:center' border=1px >");
+        document.write("<tr> <th>Valor de X </th> <th>y=" + numeroP + "x+5</th></tr>");
+        for (let i = -5; i <= 5; i++) {
+
+            document.write("<tr> <td>" + i + "</td> <td>" + ((numeroP * i) + 5) + "</td></tr>");
+        }
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
