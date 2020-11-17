@@ -8,7 +8,7 @@
     <script>
         let correcto = false;
         while (correcto == false) {
-            let nombreyApellido = prompt("Introduce mi nombre y mi apellido")
+            let nombreyApellido = prompt("Introduce mi nombre y mi apellido");
             nombreyApellido = nombreyApellido.trim().toLowerCase();
 
 
@@ -19,12 +19,13 @@
                 alert("Has introducido mal el nombre");
 
             } else if (nombreyApellido == "miguel") {
-                alert("Has introducido mal el apellido")
+                alert("Has introducido mal el apellido");
 
             } else {
-                alert("ERROR. Inténtelo de nuevo")
+                alert("ERROR. Inténtelo de nuevo");
             }
         }
+        
 
         let fechaHoy = new Date();
         var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

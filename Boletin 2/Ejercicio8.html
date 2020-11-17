@@ -5,8 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio 8</title>
     <script>
-        let nombre
+        let nombre = prompt("Introduce tu nombre y apellidos separados por espacios");
+        document.write(nombre.toUpperCase()+"<br>");
+        document.write(nombre.toLowerCase() +"<br>");
 
+        let nombreArray = []
+        nombreArray = nombre.split(" ");
+
+        document.write("Nombre: "+ nombreArray[0]+"<br>");
+        document.write("Apellido 1: "+ nombreArray[1]+"<br>");
+        document.write("Apellido 2: "+ nombreArray[2]+"<br>");
+
+        document.write((nombreArray[0])[0]+""+nombreArray[1]+""+(nombreArray[2])[0]+"<br>");
+        document.write((nombreArray[0]).substring(0,3)+""+(nombreArray[1]).substring(0,3)+""+(nombreArray[2]).substring(0,3));
+
+        
     </script>
 </head>
 <body>
