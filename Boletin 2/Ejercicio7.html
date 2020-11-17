@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+    <script>
+        let numero;
+        while (isNaN(parseInt(numero))) {
+            numero = prompt("Introduce un número");
+        }
+        
+        document.write("Valor exponencial " + Math.exp(numero) + "<br>");
+        document.write("Valor con 4 decimales " + parseFloat(numero).toFixed(4) +"<br>");
+        document.write("Valor binario " + parseInt(numero, 10).toString(2)+"<br>");
+        let oct = parseInt(numero,8);
+        document.write("Valor octal " + oct+"<br>");
+        let hex = parseInt(numero,16);
+        document.write("Valor hexadecimal " + hex +"<br>");
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

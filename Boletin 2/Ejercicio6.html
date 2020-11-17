@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+    <script>
+        
+        let radio;
+        while (isNaN(parseInt(radio))) {
+            radio = prompt("Introduce un número para calcular las partes de un círculo");
+        }
+
+        document.write("El radio es " + radio + "<br>");
+        document.write("El diámetro es " + 2*radio + "<br>");
+        document.write("El perímetro es " + 2*Math.PI*radio  + "<br>");
+        document.write("El área es " + Math.PI*Math.pow(radio,2)  + "<br>");
+        document.write("El área de la esfera es " + 4*Math.PI*Math.pow(radio,2)  + "<br>");
+        document.write("El área de la esfera es " + 4/3*Math.PI*Math.pow(radio,3)  + "<br>");
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
