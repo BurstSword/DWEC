@@ -17,7 +17,7 @@
             ['José Luis', 'Bilbao', 60],
         ];
 
-        let boton = prompt("1. Mostras usuarios \n 2. Mostrar usuarios de una localidad \n 3. Usuarios con una cuota menor o mayor que un valor");
+        let boton = prompt("1. Mostras usuarios \n 2. Mostrar usuarios de una localidad \n 3. Usuarios con una cuota mayor que un valor \n 4. Usuarios con una cuota menor que un valor");
 
         switch (parseInt(boton)) {
             case 1:
@@ -46,19 +46,25 @@
                 document.write("<table style='margin-left:auto; margin-right:auto;text-align:center' border=1px >");
                 document.write("<tr> <th>Nombre </th> <th>Comunidad</th><th>Cuota</th></tr>");
                 for (let i = 0; i <= personas.length; i++) {
-                    if (cuota > personas[i][2]) {
-                        document.write("<tr> <td>" + personas[i][0] + "</td> <td>" + personas[i][1] + "</td> <td>" + personas[i][2] + "</td></tr>");
-                    }
-
-                }
-                document.write("<table border=1px >");
-                document.write("<tr> <th>Nombre </th> <th>Comunidad</th><th>Cuota</th></tr>");
-                for (let i = 0; i <= personas.length; i++) {
                     if (cuota < personas[i][2]) {
                         document.write("<tr> <td>" + personas[i][0] + "</td> <td>" + personas[i][1] + "</td> <td>" + personas[i][2] + "</td></tr>");
                     }
 
                 }
+                
+                break;
+            case 4:
+                let cuota1 = parseInt(prompt("Introduce una cuota"));
+
+                document.write("<table style='margin-left:auto; margin-right:auto;text-align:center' border=1px >");
+                document.write("<tr> <th>Nombre </th> <th>Comunidad</th><th>Cuota</th></tr>");
+                for (let i = 0; i <= personas.length; i++) {
+                    if (cuota1 > personas[i][2]) {
+                        document.write("<tr> <td>" + personas[i][0] + "</td> <td>" + personas[i][1] + "</td> <td>" + personas[i][2] + "</td></tr>");
+                    }
+
+                }
+                
                 break;
 
 
