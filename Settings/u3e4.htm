@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Untitled</title>
+	<script language="JavaScript" type="text/javascript">
+
+		var fecha = new Date();
+		var valido = false;
+		var mostrar;
+		while (!valido) {
+			var peticion = prompt("Elige qu� formato quieres (1,2)?");
+			switch (peticion.trim()) {
+				case "1":
+					valido = true;
+					mostrar = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + "<br>";
+					break;
+				case "2":
+					valido = true;
+					if (fecha.getHours() >= 12) {
+						mostrar = fecha.getHours() - 12 + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " PM" + "<br>";
+					} else {
+						mostrar = fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " AM" + "<br>";
+					}
+					break;
+				default:
+					valido = false;
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<script language="JavaScript" type="text/javascript">
+
+		document.write(mostrar);
+
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Untitled</title>
+	<script language="JavaScript" type="text/javascript">
+
+		var valido = false;
+		var mostrar = "";
+		var cadena = prompt("Introduce tu nombre y dos apellidos");
+		var cadenasinespacios = cadena.trim();
+		var contador = 0;
+		var apel1 = "";
+		var apel2 = "";
+		var inicialnombre = "";
+		var inicialapel1 = "";
+		var inicialapel2 = "";
+		var longitudnuevacadena;
+		for (var i = 0; i < cadenasinespacios.length; i++) {
+			if (cadenasinespacios.substring(i, i + 1) != " ") {
+				contador++;
+			}
+		}
+		var subcadena = "";
+		var posicionespacio = 0;
+
+		for (var j = 0; j <= cadenasinespacios.length; j++) {
+			if (cadenasinespacios.substring(j, j + 1) == " ") {
+				posicionespacio = j;
+				subcadena = cadenasinespacios.substring(posicionespacio + 1, cadenasinespacios.length);
+			}
+		}
+		longitudnuevacadena = posicionespacio;
+		nuevacadena = cadenasinespacios.substring(0, longitudnuevacadena);
+		for (var k = 0; k <= nuevacadena.length; k++) {
+			if (nuevacadena.substring(k, k + 1) == " ") {
+				posicionespacio = k;
+				nuevasubcadena = nuevacadena.substring(posicionespacio + 1, nuevacadena.length);
+			}
+		}
+		while (!valido) {
+			var peticion = prompt("Elige la opci�n (1,2,3,4)?");
+			switch (peticion.trim()) {
+				case "1":
+					valido = true;
+					mostrar = "El n�mero de letras sin espacios es " + contador + "<br>";
+					break;
+				case "2":
+					valido = true;
+					mostrar = "La cadena en may�sculas es " + cadenasinespacios.toUpperCase() + "<br>";
+					mostrar += "La cadena en min�sculas es " + cadenasinespacios.toLowerCase() + "<br>";
+					break;
+				case "3":
+					valido = true;
+					inicialnombre = cadenasinespacios.substring(0, 1);
+					apel2 = subcadena;
+					inicialapel2 = apel2.substring(0, 1);
+					apel1 = nuevasubcadena;
+					mostrar = "Su nombrte de usuario es " + inicialnombre.toLowerCase() + apel1.toLowerCase() + inicialapel2.toLowerCase();
+					break;
+				case "4":
+					valido = true;
+					inicialnombre = cadenasinespacios.substring(0, 3);
+					apel2 = subcadena;
+					inicialapel2 = apel2.substring(0, 3);
+					apel1 = nuevasubcadena;
+					inicialapel1 = apel1.substring(0, 3);
+					mostrar = "Su nombre de usuario es " + inicialnombre.toLowerCase() + inicialapel1.toLowerCase() + inicialapel2.toLowerCase();
+					break;
+				default:
+					valido = false;
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<script language="JavaScript" type="text/javascript">
+
+		document.write(mostrar);
+
+	</script>
+
+</body>
+
+</html>

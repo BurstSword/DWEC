@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Untitled</title>
+	<script language="JavaScript" type="text/javascript">
+
+
+		var valido = false;
+		var mostrar;
+		while (!valido) {
+			var peticion = prompt("Elige qu� formato quieres (1,2,3,4,5,6)?");
+			do {
+				var pi = Math.PI;
+				var radiointroducido = prompt("Introduce el valor del radio");
+				var radio = radiointroducido.trim();
+			} while (isNaN(radio));
+			switch (peticion.trim()) {
+				case "1":
+					valido = true;
+					mostrar = "El radio es " + radio + " cm " + "<br>";
+					break;
+				case "2":
+					valido = true;
+					mostrar = "El di�metro es " + (2 * radio) + " cm " + "<br>";
+					break;
+				case "3":
+					valido = true;
+					//Multiplicamos el valor por 100, lo truncamos y despu�s lo dividimos por 100
+					//para quedarnos s�lamente con dos decimales
+					mostrar = "La longitud de la circunferencia es " + Math.trunc(2 * pi * radio * 100) / 100 + " cm " + "<br>";
+					break;
+				case "4":
+					valido = true;
+					mostrar = "El �rea del c�rculo es " + Math.trunc(pi * Math.pow(radio, 2) * 100) / 100 + " cm2 " + "<br>";
+					break;
+				case "5":
+					valido = true;
+					mostrar = "El �rea de la esfera es " + Math.trunc(4 * pi * Math.pow(radio, 2) * 100) / 100 + " cm2 " + "<br>";
+					break;
+				case "6":
+					valido = true;
+					mostrar = "El volumen de la esfera es " + Math.trunc(4 * pi * Math.pow(radio, 3) * 100 / 3) / 100 + " cm3 " + "<br>";
+					break;
+				default:
+					valido = false;
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<script language="JavaScript" type="text/javascript">
+
+		document.write(mostrar);
+
+	</script>
+
+</body>
+
+</html>

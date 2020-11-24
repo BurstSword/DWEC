@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <script language="JavaScript" type="text/javascript">
+
+        var fechahoy = new Date();
+        var diahoy = new Date(fechahoy.getFullYear(), fechahoy.getMonth(), fechahoy.getDate(), 0, 0);
+        var diafincurso = new Date(2020, 5, 24, 0, 0);
+        var milisegundoshoy = diahoy.getTime();
+        var milisegundosfincurso = diafincurso.getTime();
+        var diastotales = (milisegundosfincurso - milisegundoshoy) / (24 * 60 * 60 * 1000);
+    </script>
+    <title>Untitled</title>
+</head>
+
+<body>
+    <script language="JavaScript" type="text/javascript">
+
+        document.write("El n�mero de d�as entre hoy y fin de curso es de " + diastotales + " d�as");
+    </script>
+
+</body>
+
+</html>

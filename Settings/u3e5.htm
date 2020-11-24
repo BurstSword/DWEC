@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<title>Untitled</title>
+	<script language="JavaScript" type="text/javascript">
+
+
+		var valido = false;
+		var mostrar;
+		while (!valido) {
+			var peticion = prompt("Elige qu� formato quieres (1,2,3,4)?");
+			switch (peticion.trim()) {
+				case "1":
+					valido = true;
+					do {
+						var baseintroducida = prompt("Introduce la base");
+						var base = baseintroducida.trim();
+					} while (isNaN(base));
+					do {
+						var exponenteintroducido = prompt("Introduce el exponente");
+						var exponente = exponenteintroducido.trim();
+					} while (isNaN(exponente));
+					mostrar = "La potencia de " + base + " elevado a " + exponente + " es " + Math.pow(base, exponente) + "<br>";
+					break;
+				case "2":
+					valido = true;
+					do {
+						var radicandointroducido = prompt("Introduce un n�mero no negativo");
+						var radicando = radicandointroducido.trim();
+					} while (isNaN(radicando));
+					do {
+						var radicando = prompt("Introduce un n�mero no negativo");
+					} while (radicando < 0);
+					mostrar = "La raiz de " + radicando + " es " + Math.sqrt(radicando) + "<br>";
+					break;
+				case "3":
+					valido = true;
+					do {
+						var redondearintroducido = prompt("Introduce el n�mero a redondear. Utiliza el punto, y no la coma");
+						var redondear = redondearintroducido.trim();
+					} while (isNaN(redondear));
+					mostrar = "El n�mero " + redondear + " una vez redondeado es " + Math.round(redondear) + "<br>";
+					break;
+				case "4":
+					valido = true;
+					do {
+						var angulointroducido = prompt("Introduce un �ngulo entre 0 y 360 grados");
+						var angulo = angulointroducido.trim();
+					} while (isNaN(angulo));
+					var pi = Math.PI;
+					var anguloradianes = angulo * pi / 180;
+					var resultadoseno = Math.sin(anguloradianes);
+					var resultadocoseno = Math.cos(anguloradianes);
+					var resultadotangente = Math.tan(anguloradianes);
+					mostrar = "Seno: " + resultadoseno + "<br>Coseno: " + resultadocoseno + "<br>Tangente: " + resultadotangente + "<br>";
+					break;
+				default:
+					valido = false;
+			}
+		}
+
+	</script>
+
+</head>
+
+<body>
+	<script language="JavaScript" type="text/javascript">
+
+		document.write(mostrar);
+
+	</script>
+
+</body>
+
+</html>
