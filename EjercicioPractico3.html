@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3</title>
+    <script>
+        var texto = "En un lugar de la Mancha, de cuyo nombre no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero, adarga antigua, rocín flaco y galgo corredor";
+        var contador = 0;
+        //Letras a
+        for (let index = 0; index < texto.length; index++) {
+            if (texto[index] == "a") {
+                contador++;
+            }
+
+        }
+        document.write("La variable contiene " + contador + " letras a");
+
+        //Lista ordenada
+        var textoDividido = [];
+        textoDividido = texto.split(",");
+    
+        document.write("<ol>");
+        for (let index = 0; index < textoDividido.length; index++) {
+            document.write("<li> " + textoDividido[index] +"</li>");
+            
+        }
+        document.write("</ol>")
+
+        //Buscar palabra
+        var textoDividido2 = [];
+        var texto2 = texto.replace(/,/g, "");
+        textoDividido2 = texto2.split(" ");
+        
+        
+        var palabraABuscar = prompt("Introduce una palabra y te diremos en qué posición se encuentra, si es que existe").trim();
+
+        var existe = false;
+        for (let index = 0; index < textoDividido2.length && !existe; index++) {
+            if(textoDividido2[index]==palabraABuscar){
+                existe = true;
+                document.write("La palabra "+ palabraABuscar +" se encuentra en la posición " + (index+1) +"<br>");
+            }
+            
+        }
+        if(!existe){
+            document.write("La palabra " + palabraABuscar + " no se encuentra en el texto <br>");
+        }
+
+        //Cambiar palabras
+        do {
+            var palabra1 = prompt("Introduce la palabra nueva").trim();
+            
+        } while (!isNaN(palabra1));
+        do {
+            var palabra2 = prompt("Introduce la palabra a buscar para cambiarla").trim().toLowerCase();
+            
+        } while (!isNaN(palabra2));
+
+        var textoDividido3 = [];
+        textoDividido3 = texto.split(" ");
+        
+
+        for (let index = 0; index < textoDividido3.length; index++) {
+            if((textoDividido3[index].toLowerCase())==palabra2){
+                textoDividido3[index]=palabra1;
+            }
+            
+        }
+        textoDividido3.forEach((e)=>document.write(e+" "));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+    <script>
+        
+
+
+        let boton = prompt("Eliges una opción \n 1. Calcula la hipotenusa \n 2. Calcula los ángulos del triángulo");
+
+        switch (parseInt((boton))) {
+            case 1:
+                do {
+                    var cateto1 = parseInt(prompt("Introduce el cateto 1, debe ser un número").trim());
+                } while (isNaN(cateto1));
+                do {
+                    var cateto2 = parseInt(prompt("Introduce el cateto 2, debe ser un número").trim());
+                } while (isNaN(cateto2));
+                document.write("Los lados miden " + cateto1 + ", " + cateto2 + ", " + Math.sqrt((Math.pow(cateto1, 2) + Math.pow(cateto2, 2))).toFixed(2));
+                break;
+
+            case 2:
+                do {
+                    var cateto1 = parseInt(prompt("Introduce el cateto 1, debe ser un número").trim());
+                } while (isNaN(cateto1));
+                do {
+                    var cateto2 = parseInt(prompt("Introduce el cateto 2, debe ser un número").trim());
+                } while (isNaN(cateto2));
+
+                var anguloA = Math.asin(cateto1 / Math.sqrt((Math.pow(cateto1, 2) + Math.pow(cateto2, 2))));
+                var anguloAGrados = anguloA * (180 / Math.PI);
+
+                document.write("Los angulos del triángulo rectángulo son 90" + ", " + anguloAGrados.toFixed(2) + ", " + (90 - anguloAGrados).toFixed(2));
+                break;
+        }
+
+        
+
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
