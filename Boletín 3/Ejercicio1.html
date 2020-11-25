@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="arrays.js"></script>
+    <title>Ejercicio 1</title>
+    <script>
+
+        var boton = parseInt(prompt("Introduce una opción:" +
+            "\n1. Mostrar el número de elementos del array" +
+            "\n2. Mostrar todos los elementos del array." +
+            "\n3. Muestra el array a la inversa." +
+            "\n4. Muestra los elementos del array ordenados alfabéticamente (pero no los ordena)" +
+            "\n5. Añadir un elemento al principio del array." +
+            "\n6. Añadir un elemento al final del array" +
+            "\n7. Borrar un elemento al principio del array (y decir cuál se ha borrado)." +
+            "\n8. Borrar un elemento al final del array (y decir cuál se ha borrado)." +
+            "\n9. Muestra el elemento que se encuentra en una posición que el usuario indica." +
+            "\n10. Muestra la posición en la que se encuentra un elemento que le indica el usuario." +
+            "\n11. Muestra los elementos que se encuentran en un intervalo que el usuario indica."));
+
+        switch (parseInt((boton))) {
+            case 1:
+                mostrarNumPaises();
+                break;
+
+            case 2:
+                mostrarPaises();
+                break;
+            case 3:
+                mostrarPaisesAlReves();
+                break;
+            case 4:
+                mostrarPaisesOrdenados();
+                break;
+            case 5:
+                anadirPaisPrincipio();
+                break;
+            case 6:
+                anadirPaisFinal();
+                break;
+            case 7:
+                eliminarPaisPrincipio();
+                break;
+                case 8:
+                eliminarPaisFinal();
+                break;
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
