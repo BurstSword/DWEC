@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="votos.js"></script>
+    <script src="ArrayVotos.js"></script>
+    <title>Práctica votos</title>
+
+    <script>
+        var voto = new Voto("vacio","vacio",0);
+    var votos = [
+	 new Voto("PSOE","Ataulfo Argenta", 34),
+     new Voto("PP","Santa Catalina", 56),
+     new Voto("IU","Riomar", 12),
+     new Voto("Ciudadanos","José Saramago", 52),
+     new Voto("Podemos","Riomar", 61),
+     new Voto("UPYD","José Saramago", 6),
+     new Voto("PP","Riomar", 23),
+     new Voto("IU","Ataulfo Argenta", 42),
+     new Voto("Ciudadanos","Santa Catalina", 11),
+     new Voto("Podemos","Ataulfo Argenta", 43),
+     new Voto("PSOE","Riomar", 55),
+     new Voto("UPYD","Ataulfo Argenta", 12),
+    ]
+
+        let boton = prompt("Eliges una opción \n 1. Introduce un nuevo voto \n 2. Escriba colegio y partido y podrá modificar los votos \n 3. Mostrar votos por colegio \n 4. Mostrar votos por partido");
+
+switch (parseInt((boton))) {
+    
+    case 1:
+        votos.push(voto.pedirVoto());
+        for (let index = 0; index < votos.length; index++) {
+            document.write(votos[index].nombrePartido + " " +votos[index].nombreColegio+" "+votos[index].numVotos+"<br>" );
+            
+        }
+        document.write("<br>")
+        break;
+
+    case 2:
+        var partido;
+        var colegio;
+        var numeroVotos;
+        do {
+            var partidoValido = false;
+            partido = prompt("Introduce el partido (PSOE,PP,IU,Ciudadanos,Podemos y UPYD)");
+            partido=partido.toLowerCase();
+            if (partido.toLowerCase() == "psoe" || partido.toLowerCase() == "pp" || partido.toLowerCase() == "iu" || partido.toLowerCase() == "ciudadanos" || partido.toLowerCase() == "podemos" || partido.toLowerCase() == "upyd") {
+
+                partidoValido = true;
+
+            }
+        } while (partidoValido == false);
+
+        do {
+            var colegioValido = false;
+            colegio = prompt("Introduce el colegio entre los posibles (Ataulfo Argenta, Santa Catalina, Riomar, José Saramago)");
+            colegio=colegio.toLowerCase();
+            if (colegio.toLowerCase() == "ataulfo argenta" || colegio.toLowerCase() == "santa catalina" || colegio.toLowerCase() == "riomar" || colegio.toLowerCase() == "jose saramago") {
+
+                colegioValido = true;
+
+            }
+        } while (colegioValido == false);
+
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido.toLowerCase()==partido && votos[index].nombreColegio.toLowerCase()==colegio){
+                console.log("entra entra");
+                votos[index].numVotos=prompt("Introduce el numero nuevo");
+            }
+            
+        }
+        break;
+        case 3:
+        var colegio;
+        do {
+            var colegioValido = false;
+            colegio = prompt("Introduce el colegio entre los posibles (Ataulfo Argenta, Santa Catalina, Riomar, José Saramago)");
+            colegio=colegio.toLowerCase();
+            if (colegio.toLowerCase() == "ataulfo argenta" || colegio.toLowerCase() == "santa catalina" || colegio.toLowerCase() == "riomar" || colegio.toLowerCase() == "jose saramago") {
+
+                colegioValido = true;
+
+            }
+        } while (colegioValido == false);
+       
+
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombreColegio.toLowerCase()==colegio){
+                document.write(votos[index].nombrePartido + "  " + votos[index].numVotos+"<br>");
+            }
+    
+        }
+
+        break;
+        case 4:
+            
+        var partido;
+
+        do {
+            var partidoValido = false;
+            partido = prompt("Introduce el partido (PSOE,PP,IU,Ciudadanos,Podemos y UPYD)");
+            partido=partido.toLowerCase();
+            if (partido.toLowerCase() == "psoe" || partido.toLowerCase() == "pp" || partido.toLowerCase() == "iu" || partido.toLowerCase() == "ciudadanos" || partido.toLowerCase() == "podemos" || partido.toLowerCase() == "upyd") {
+
+                partidoValido = true;
+
+            }
+        } while (partidoValido == false);
+
+       
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido.toLowerCase()==partido){
+                document.write(votos[index].nombreColegio + " " + votos[index].numVotos +"<br><br>" );
+            }
+    
+        }
+        break;
+
+}
+document.write("<br><br><br>")
+document.write("Votos totales" +"<br>")
+    
+        var contadorPSOE=0;
+        var contadorPP=0;
+        var contadorIU=0;
+        var contadorCiudadanos=0;
+        var contadorPodemos=0;
+        var contadorUPYD=0;
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="PSOE"){
+                contadorPSOE+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="PP"){
+                contadorPP+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="IU"){
+                contadorIU+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="Ciudadanos"){
+                contadorCiudadanos+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="Podemos"){
+                contadorPodemos+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombrePartido=="UPYD"){
+                contadorUPYD+=votos[index].numVotos;
+            }
+            
+        }
+        document.write("PSOE "+contadorPSOE+"<br>");
+        document.write("PP "+contadorPP+"<br>");
+        document.write("IU "+contadorIU+"<br>");
+        document.write("Ciudadanos "+contadorCiudadanos+"<br>");
+        document.write("Podemos "+contadorPodemos+"<br>");
+        document.write("UPYD "+contadorUPYD+"<br>");
+
+        var ListaPartidos=[contadorPSOE,contadorPodemos,contadorIU,contadorCiudadanos,contadorPP,contadorUPYD];
+
+        ListaPartidos.sort((a, b) => (a < b) ? 1 : -1);
+
+        var contadorAtaulfo=0;
+        var contadorRiomar=0;
+        var contadorSantaCatalina=0;
+        var contadorJose=0;
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombreColegio=="Ataulfo Argenta"){
+                contadorAtaulfo+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombreColegio=="Riomar"){
+                contadorRiomar+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombreColegio=="Santa Catalina"){
+                contadorSantaCatalina+=votos[index].numVotos;
+            }
+            
+        }
+        for (let index = 0; index < votos.length; index++) {
+            if(votos[index].nombreColegio=="José Saramago"){
+                contadorJose+=votos[index].numVotos;
+            }
+            
+        }
+        var ListaCole=[contadorAtaulfo,contadorJose,contadorRiomar,contadorSantaCatalina];
+
+        ListaCole.sort((a, b) => (a > b) ? 1 : -1)
+
+        document.write("<br><br><br>")
+
+        document.write("Listado menor a mayor"+"<br>");
+        
+        for (let index = 0; index < ListaCole.length; index++) {
+            document.write(ListaCole[index]+"<br>" );
+            
+        }
+        document.write("<br><br><br>")
+        document.write("Listado mayor a menor"+"<br>");
+       
+        for (let index = 0; index < ListaPartidos.length; index++) {
+            document.write(ListaPartidos[index]+"<br>" );
+            
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
