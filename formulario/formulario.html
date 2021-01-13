@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <div class="container card col-md-5 justify-content-center mt-3">
+    <fieldset>
+        <legend align="left">Formulario de discos</legend>
+        <form id="myForm" action="tramitar.php" method="post">
+            
+            <label for="name">Nombre del disco:</label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Nombre del disco">
+            <br>
+            <label  for="group">Grupo de música o cantante:</label>
+            <input class="form-control" type="text" id="group" name="group" placeholder="Grupo de música">
+            <br>
+            <label for="year">Año de Publicación:</label>
+            <input class="form-control" type="text" id="year" name="year" placeholder="Año de publicacion">
+            <br>
+            <label for="music">Tipo de musica:</label>
+            <select name="music" id="music">
+                <option value="" selected disabled>...</option>
+                <option value="rock">Rock</option>
+                <option value="pop">Pop</option>
+                <option value="punk">Punk</option>
+                <option value="indie">Indie</option>
+            </select>
+            <br><br>
+            <label for="location">Ubicación:</label>
+            <input class="form-control" type="text" id="location" name="location" placeholder="Ubicación del disco">
+            <br>
+            <label>Prestado: </label>
+            <label for="prestado">Si</label>
+            <input  type="radio" id="prestado" name="lent" value="true">
+
+            <label for="noPrestado">No</label>
+            <input  type="radio" id="noPrestado" name="lent" value="false" checked>
+            <br>
+            <input onclick="validar()" type="button" class="btn btn-primary mb-3" value="Submit">
+            &nbsp;
+            <input type="reset" class="btn btn-danger mb-3" value="Reset">
+            
+        </form>
+    </fieldset>
+</div>
+</body>
+
+</html>
