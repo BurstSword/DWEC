@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script language="JavaScript" type="text/javascript">
+
+var regiones = new Array("Andaluc�a","Extremadura","Galicia");
+var AndalucIa = new Array("Sevilla","C�diz","Huelva","C�rdoba","Granada","M�laga","Jaen","Almer�a");
+var Extremadura = new Array("C�ceres","Badajoz");
+var Galicia = new Array("A Coru�a","Ourense","Lugo","Pontevedra");
+
+function carga_provincias(){
+var opciontomada=document.getElementById("miformulario").regiones[document.getElementById("miformulario").regiones.selectedIndex].value;
+if (opciontomada=="nada"){
+//Elimino las opciones del nuevo select, lo deshabilitamos y le ocultamos la capa que lo contiene
+document.getElementById("provincias").options.length=0;
+document.getElementById("provincias").disabled=true;
+document.getElementById("capaprovincias").style.visibility="hidden";
+}else{
+	//Defino el array de opciones que habr� de cargarse, que tendr� el nombre de la Regi�n seleccionada
+	var opciones=new Array();
+	opciones=eval(opciontomada);
+	//Calculo el n�mero de elementos que tendr� ese array
+	var num_elementos=opciones.length;
+	//Habilitamos el nuevo select
+	document.getElementById("provincias").disabled=false;	
+	//Defino el n�mero de elementos que tendr� el nuevo select provincias
+	document.getElementById('miformulario').provincias.length=num_elementos;
+	//Introduzco cada elemento del array en el select
+		for(var i=0;i<num_elementos;i++){
+		document.getElementById("miformulario").provincias[i].value=opciones[i];
+    document.getElementById("miformulario").provincias[i].text=opciones[i];
+		}
+	//Por �ltimo, hago que aparezca la capa que contiene el nuevo select y selecciono el primer elemento por defecto
+	document.getElementById('miformulario').provincias.selectedIndex="0";
+	document.getElementById("capaprovincias").style.visibility="visible";
+}
+}
+
+//-->
+</script>
+
+<title>Untitled</title>
+</head>
+<body>
+<form id="miformulario" action="tratar.php" method="POST" enctype="text/plain">
+<label for="regiones">Regiones:</label>
+<select id="regiones" name="regiones" onChange="carga_provincias();">
+<option value="nada">Selecciones una de las regiones</option>
+<script language="JavaScript" type="text/javascript">
+
+for (var i=0;i<regiones.length;i++){
+document.write("<option value=\""+regiones[i]+"\">"+regiones[i]+"</option>");
+}
+//-->
+</script>
+</select><br><br>
+<div id="capaprovincias" style="visibility:hidden">
+<label for="provincias">Provincias</label>
+<select id="provincias" name="provincias">
+<option value=""></option>
+</select><br><br>
+</div>
+<p align="center"><input type="button" onClick="validar()" value="Enviar">  <input type="reset" value="Borrar"></p>
+</form>
+</body>
+</html>

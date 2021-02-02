@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+body{
+background-color:lightblue;
+}
+fieldset{
+color:green;
+}
+p{
+color:brown;
+font-weight:bold;
+font-size:12px;
+}
+legend{
+color:ligthyellow;
+font-size:10px;
+}
+label{
+color:blue;
+font-size:12px;
+font-weight:bold;
+}
+</style>
+<script language="JavaScript" type="text/javascript">
+
+var liga_futbol = new Array("Espa�ola","Premier","Calcio","Bundesliga");
+var Española = new Array("Real Betis","Sevilla","Real Madrid","FC Barcelona","At. Madrid","Valencia CF","Granada CF");
+var Premier = new Array("Arsenal","Liverpool", "Manchester United", "Manchester City", "Leiscester", "Fulham");
+var Calcio = new Array("Juventus","Inter Mil�n","Milan","As Roma", "Atalanta", "Fiorentina");
+var Bundesliga = new Array("Bayer Munich","Hamburgo","Bayer Leverkusen","Herta Berl�n", "Schalke 04");
+
+//La siguiente funci�n nos servir� para sustituir los espacios en blanco de los nombres de los equipos por guiones bajos
+//para ponerlos en el value del select sin espacios en blanco
+function elimina_espacios(equipo){
+var nombre_equipo="";
+for (var i=0;i<equipo.length;i++){
+	if(equipo.substring(i,i+1)==" "){
+	nombre_equipo+="_";	
+	}else{
+	nombre_equipo+=equipo.substring(i,i+1);	
+	}
+}
+return nombre_equipo;
+}
+
+function carga_ligas(){
+var opciontomada=document.getElementById("miformulario").liga_futbol[document.getElementById("miformulario").liga_futbol.selectedIndex].value;
+if (opciontomada=="nada"){
+//Elimino las opciones del nuevo select, lo deshabilitamos y le ocultamos la capa que lo contiene
+document.getElementById("equipos").options.length=0;
+document.getElementById("equipos").disabled=true;
+document.getElementById("capaequipos").style.visibility="hidden";
+}else{
+	//Defino el array de opciones que habr� de cargarse, que tendr� el nombre de la Regi�n seleccionada
+	var opciones=new Array();
+	opciones=eval(opciontomada);
+	//Calculo el n�mero de elementos que tendr� ese array
+	var num_elementos=opciones.length;
+	//Habilitamos el nuevo select
+	document.getElementById("equipos").disabled=false;	
+	//Defino el n�mero de elementos que tendr� el nuevo select provincias. Se le suma 1 para a�adir la opci�n cero
+	document.getElementById('miformulario').equipos.length=num_elementos+1;
+	//Introduzco cada elemento del array en el select
+		document.getElementById("miformulario").equipos[0].value="nada";
+		document.getElementById("miformulario").equipos[0].text="Seleccione el equipo que m�s le gusta";
+	//Contamos desde el elemento con �ndice 1 (i+1) pues el �ndice 0 ya est� ocupado con los valores de las l�neas anteriores		
+	for(var i=0;i<num_elementos;i++){
+		document.getElementById("miformulario").equipos[i+1].value=elimina_espacios(opciones[i]);
+    		document.getElementById("miformulario").equipos[i+1].text=opciones[i];
+		}
+	//Por �ltimo, hago que aparezca la capa que contiene el nuevo select y selecciono el primer elemento por defecto
+	document.getElementById("miformulario").equipos.selectedIndex="0";
+	document.getElementById("capaequipos").style.visibility="visible";
+	}
+}
+
+//funcion que cambia el estilo del campo err�neo y toma el foco de dicho campo
+function cambia_estilo_error(nombre_campo){
+document.getElementById(nombre_campo).style.outlineStyle="dashed";
+document.getElementById(nombre_campo).style.backgroundColor="lightyellow";
+document.getElementById(nombre_campo).style.outlineColor="red";
+document.getElementById(nombre_campo).style.outlineWidth="2px";
+document.getElementById(nombre_campo).focus();
+return 0;
+}
+
+//funcion que recupera el estilo cuando se marque el campo para ser completado
+function cambia_estilo_normal(nombre_campo){
+document.getElementById(nombre_campo).style.outlineStyle="none";
+document.getElementById(nombre_campo).style.backgroundColor="white";
+return 0;
+}
+
+//funcion que recupera el estilo de las capas de elementos checkbox y select de este formuario
+function cambia_estilocapa_normal(nombre_capa){
+document.getElementById(nombre_capa).style.outlineStyle="none";
+return 0;
+}
+
+//funci�n de validacion de campos que requieran un n�mero de caracteres
+function valida_campo(nombre_campo,longitud,obligatorio){
+var devuelve=true;
+var campo=document.getElementById(nombre_campo).value.trim();
+	if(obligatorio && campo.length==0){
+	alert("El campo "+nombre_campo.toUpperCase()+" debe contener alg�n car�cter");
+	devuelve=false;	
+	}
+	if(devuelve && campo.length > longitud){
+	alert("El campo "+nombre_campo.toUpperCase()+" no puede tener m�s de "+longitud+" caracteres");
+	devuelve=false;	
+	}
+	if(!devuelve){
+	cambia_estilo_error(nombre_campo);	
+	}
+return devuelve;
+}
+
+//funci�n de validacion de campos con expresiones regulares
+function valida_campo_regular(nombre_campo,obligatorio){
+var devuelve=true;
+var campo=document.getElementById(nombre_campo).value.trim();
+	if(obligatorio && campo.length==0){
+	devuelve=false;	
+	alert("Debe completar el campo "+nombre_campo.toUpperCase());
+	}
+	if(devuelve){
+		if(nombre_campo=="fecha" && !(/^\d{1,2}\/\d{1,2}\/\d{2,4}$/.test(campo))){
+		devuelve=false;			
+		}
+		if((nombre_campo=="telefono1" || (nombre_campo=="telefono2" && campo.length!=0)) && !(/^(\+34|0034|34)?[6|7|8|9][0-9]{8}$/.test(campo))){
+		devuelve=false;			
+		}
+		if(nombre_campo=="email" && !(/@/.test(campo))){
+		devuelve=false;			
+		}
+		if(!devuelve){
+		alert("El campo "+nombre_campo.toUpperCase()+" debe tener el formato pedido");
+		}
+	}	
+	if(!devuelve){
+	cambia_estilo_error(nombre_campo);
+	}
+return devuelve;
+}
+
+function validar(){
+var valida=true;
+//Validaci�n del campo nombre, ayud�ndonos de la funci�n valida_campo
+	if(!valida_campo("nombre",50,true)){
+	valida=false;
+	}
+
+//Validaci�n del campo domicilio, ayud�ndonos de la funci�n valida_campo
+if(valida){
+	if(!valida_campo("domicilio",40,true)){
+	valida=false;
+	}
+}
+//Validaci�n del campo fecha usando expresiones regulares
+if(valida){
+	if(!valida_campo_regular("fecha",true)){
+	valida=false;
+	}
+}
+//Validaci�n del campo telefono1 usando expresiones regulares
+if(valida){
+	if(!valida_campo_regular("telefono1",true)){
+	valida=false;
+	}
+}
+
+//Validaci�n del campo telefono2 usando expresiones regulares
+if(valida){
+	if(!valida_campo_regular("telefono2",false)){
+	valida=false;
+	}
+}
+
+//Validaci�n del campo email usando expresiones regulares
+if(valida){
+	if(!valida_campo_regular("email",true)){
+	valida=false;
+	}
+}
+
+//Validaci�n del campo URL
+if(valida){
+	var campourl=document.getElementById("url").value.trim();	
+	if(!valida_campo("url",60,false)){
+	valida=false;
+	}
+	if(campourl.length!=0){	
+		if (valida && (campourl.substring(0,7)!="http://" && campourl.substring(0,8)!="https://")){
+		alert("El campo WEB del usuario debe empezar por http:// o https://");	
+		valida=false;
+		}
+	}
+	if(!valida){
+	cambia_estilo_error("url");
+	}
+}
+
+//Validaci�n de los checkboxes. Debe marcarse al menos uno
+
+if(valida){
+var opcionfutbol=document.getElementById("futbol").checked;
+var opcionbaloncesto=document.getElementById("baloncesto").checked;
+var opcionatletismo=document.getElementById("atletismo").checked;
+var opcionjockey=document.getElementById("jockey").checked;
+	if(!opcionfutbol && !opcionbaloncesto && !opcionatletismo && !opcionjockey){
+	alert("Debe marcarse al menos uno de los deportes mostrados");
+	valida=false;
+	}
+	if(!valida){
+	document.getElementById("capadeportes").style.outlineStyle="dashed";
+	document.getElementById("capadeportes").style.outlineColor="red";
+	document.getElementById("capadeportes").style.outlineWidth="2px";
+	}
+}
+
+//Validaci�n del select liga_futbol. Debe marcarse al menos una opci�n
+if(valida){
+var liga=document.getElementById("liga_futbol").selectedIndex;
+	if(liga=="0"){
+	alert("Debe seleccionarse al menos una de las ligas mostradas");
+	valida=false;
+	}
+	if(!valida){
+	document.getElementById("capaligas").style.outlineStyle="dashed";
+	document.getElementById("capaligas").style.outlineColor="red";
+	document.getElementById("capaligas").style.outlineWidth="2px";
+	}
+}
+
+//Validaci�n del select equipos. Debe marcarse al menos una opci�n
+if(valida){
+var selec_equipo=document.getElementById("equipos").selectedIndex;
+	if(selec_equipo=="0"){
+	alert("Debe marcarse al menos uno de los equipos mostrados");
+	valida=false;
+	}
+	if(!valida){
+	document.getElementById("capaequipos").style.outlineStyle="dashed";
+	document.getElementById("capaequipos").style.outlineColor="red";
+	document.getElementById("capaequipos").style.outlineWidth="2px";
+	}
+}
+
+//Validaci�n del campo observaciones, ayud�ndonos de la funci�n valida_campo
+if(valida){
+	if(!valida_campo("observaciones",300,false)){
+	valida=false;
+	}
+}
+
+//Validaci�n del campo condiciones, que debe ser aceptado
+if(valida){
+	var condiciones=document.getElementById("miformulario").condiciones.value;
+	if(condiciones=="no"){
+	alert("Debes aceptar las condiciones");
+	document.getElementById("capacondiciones").style.outlineStyle="dashed";
+	document.getElementById("capacondiciones").style.outlineColor="red";
+	document.getElementById("capacondiciones").style.outlineWidth="2px";
+	valida=false;
+	}
+}
+
+
+
+if(valida){
+document.getElementById("miformulario").submit();
+}
+
+}
+//-->
+</script>
+
+<title>Untitled</title>
+</head>
+<body>
+<form id="miformulario" action="tratar.php" method="POST" enctype="text/plain">
+
+<fieldset>
+<legend align="left">Datos personales</legend>
+<p><label for="nombre">Nombre y apellidos (max. 50 caracteres): </label>
+<input id="nombre" name="nombre" type="text" size="50" onKeydown="cambia_estilo_normal('nombre')" /></p>
+<p><label for="domicilio">Domicilio (max. 40 caracteres): </label>
+<input id="domicilio" name="domicilio" type="text" size="40" onKeydown="cambia_estilo_normal('domicilio')" /></p>
+<p><label for="fecha">Fecha de nacimiento (formato dd/mm/aaaa): </label>
+<input id="fecha" name="fecha" type="text" onKeydown="cambia_estilo_normal('fecha')" /></p>
+<p><label for="telefono1">Tel�fono 1: </label>
+<input id="telefono1" name="telefono1" type="text" onKeydown="cambia_estilo_normal('telefono1')" /></p>
+<p><label for="telefono2">Tel�fono 2: </label>
+<input id="telefono2" name="telefono2" type="text" onKeydown="cambia_estilo_normal('telefono2')" /></p>
+<p><label for="email">E-mail: </label>
+<input id="email" name="email" type="text" onKeydown="cambia_estilo_normal('email')" /></p>
+<p><label for="url">WEB del usuario: </label>
+<input id="url" name="url" type="text" onKeydown="cambia_estilo_normal('url')" /><br></p>
+</fieldset>
+
+<fieldset>
+<legend align="left">Gustos personales</legend>
+<div id="capadeportes">
+<p>Indica tus deportes favoritos de entre los que se te muestran (al menos uno):</p>
+<input id="futbol" name="futbol" type="checkbox" onClick="cambia_estilocapa_normal('capadeportes')" /><label for="futbol">F�tbol</label><br>
+<input id="baloncesto" name="baloncesto" type="checkbox" onClick="cambia_estilocapa_normal('capadeportes')" /><label for="baloncesto">Baloncesto</label><br>
+<input id="atletismo" name="atletismo" type="checkbox" onClick="cambia_estilocapa_normal('capadeportes')" /><label for="atletismo">Atletismo</label><br>
+<input id="jockey" name="jockey" type="checkbox" onClick="cambia_estilocapa_normal('capadeportes')" /><label for="jockey">Jockey</label><br>
+</div><br>
+
+<div id="capaligas">
+<label for="liga_futbol">Liga de f�tbol favorita:</label>
+<select id="liga_futbol" name="liga_futbol" onClick="cambia_estilocapa_normal('capaligas')" onChange="carga_ligas();">
+<option value="nada" selected>Seleccione una de las ligas</option>
+<script language="JavaScript" type="text/javascript">
+
+for (var i=0;i<liga_futbol.length;i++){
+document.write("<option value=\""+liga_futbol[i]+"\">"+liga_futbol[i]+"</option>");
+}
+//-->
+</script>
+</select>
+</div>
+<br>
+
+<div id="capaequipos" style="visibility:hidden">
+<label for="equipos">Equipos de la liga</label>
+<select id="equipos" name="equipos" onClick="cambia_estilocapa_normal('capaequipos')">
+<option value=""></option>
+</select>
+</div><br>
+
+<p><label for="observaciones">Observaciones:</label></p>
+<textarea id="observaciones" name="obervaciones" rows="10" cols="50" onKeypress="cambia_estilo_normal('observaciones')" >Incluya en este campo aquello que considere oportuno</textarea><br><br>
+<div id="capacondiciones">
+<label for="condiciones">Aceptaci�n de condiciones:</label><br>
+<input type="radio" id="condicionesno" name="condiciones" value="no" onclick="cambia_estilocapa_normal('capacondiciones')" checked \><label for="condicionesno">No acepto</label><br>
+<input type="radio" id="condicionessi" name="condiciones" value="si" onclick="cambia_estilocapa_normal('capacondiciones')" \><label for="condicionessi">Acepto</label><br>
+</div>
+</fieldset>
+<p align="center"><input type="button" onClick="validar()" value="Enviar">  <input type="reset" value="Borrar"></p>
+</form>
+</body>
+</html>

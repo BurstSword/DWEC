@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+<!--
+.presenta{
+color:blue;
+}
+.error{
+color:rojo;
+}
+-->
+</style>
+
+<script language="JavaScript" type="text/javascript">
+<!--
+function devuelveestilo(nombrecampo){
+document.getElementById(nombrecampo).style.backgroundColor="white";
+document.getElementById(nombrecampo).style.borderColor="lightgray";
+document.getElementById(nombrecampo).style.borderStyle="solid";
+}
+function validar_numerico(nombrecampo,minimo,maximo){
+var comprueba=false;
+var campo=document.getElementById(nombrecampo).value.trim();
+		if(isNaN(campo)){
+		alert("El valor introducido debe ser un valor numérico");
+		}else	if(campo.length==0){
+		alert("El valor introducido debe contener algún carácter");
+		}else if(parseInt(campo) < minimo || parseInt(campo) > maximo){
+		alert("El valor introducido debe estar entre "+minimo+" y "+maximo);
+		}else{
+		comprueba=true;
+		}
+		if(!comprueba){
+		document.getElementById(nombrecampo).style.backgroundColor="lightyellow";
+		document.getElementById(nombrecampo).style.borderColor="red";
+		document.getElementById(nombrecampo).style.borderStyle="dashed";
+		document.getElementById(nombrecampo).focus();		
+		}
+return comprueba;
+}
+
+function validar_campo(nombrecampo){
+var devuelve=true;
+var campo=document.getElementById(nombrecampo).value.trim();
+		if (campo.length==0 || campo.length  > 20){
+		alert("Has introducido un número de caracteres erróneo");
+		document.getElementById(nombrecampo).style.backgroundColor="lightyellow";
+		document.getElementById(nombrecampo).style.borderColor="red";
+		document.getElementById(nombrecampo).style.borderStyle="dashed";
+		document.getElementById(nombrecampo).focus();
+		devuelve=false;
+}
+return devuelve;
+}
+
+function validar(){
+var valida=true;
+		if(!validar_campo("nombre")){
+		valida=false;
+		}
+if(valida){
+		if(!validar_campo("cantante")){
+		valida=false;
+		}
+}
+if(valida){
+		if(!validar_numerico("publicacion",1950,2020)){
+		valida=false;
+		}
+}
+
+if(valida){
+		if(!validar_numerico("localizacion",1,10)){
+		valida=false;
+		}
+}
+
+if(valida){
+document.getElementById("miformulario").submit();
+}
+}
+//-->
+</script>
+
+<title>Untitled</title>
+</head>
+<body>
+<form id="miformulario" action="tratar.php" method="POST" enctype="text/plain">
+<label for="nombre" class="presenta">Nombre del disco:</label>
+<input id="nombre" name="nombre" type="text" size="20" maxlength="20" onKeypress="devuelveestilo('nombre')" /><br><br>
+<label for="cantante" class="presenta">Grupo de música o cantante:</label>
+<input id="cantante" name="cantante" type="text" size="20" maxlength="20" onKeypress="devuelveestilo('cantante')" /><br><br>
+<label for="publicacion" class="presenta">Año de publicación</label>
+<input id="publicacion" name="publicacion" type="number" value="1950" min="1950" max="2020" onKeypress="devuelveestilo('publicacion')" /><br><br>
+<label for="tipomusica" class="presenta">Tipo de música:</label>
+<select id="tipomusica" name="tipomusica">
+<option value="rock" selected>Rock</option>
+<option value="pop">Pop</option>
+<option value="punk">Punk</option>
+<option value="indie">Indie</option>
+</select><br><br>
+<label for="localizacion" class="presenta">Localización:</label>
+<input id="localizacion" name="localizacion" type="number" value="1" min="1" max="10" /><br><br>
+<p align="left" class="presenta">¿Está prestado?:</p>
+<input id="noprestado" name="prestado" type="radio" value="no" checked/><label  class="presenta" for="noprestado">No</label><br>
+<input id="prestado" name="prestado" type="radio" value="si" /><label  class="presenta" for="prestado">Sí</label><br><br>
+<p align="center"><input type="button" onClick="validar()" value="Enviar">  <input type="reset" value="Borrar"></p>
+</form>
+</body>
+</html>
